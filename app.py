@@ -8,7 +8,7 @@ st.set_page_config(
     layout="wide",
 )
 
-tab1, tab2, tab3, tab4 = st.tabs(["Sales Stock", "WO", "WL", "Forecast & Prediction"])
+tab1, tab2, tab3, tab4 = st.tabs(["Sales Stock", "WO", "WL", "Forecast & Prediction"])  
 
 with tab1:
     # read csv
@@ -137,8 +137,10 @@ with tab1:
 with tab2:
     df = pd.read_csv("data/daily_wo.csv")
     df_total = df.drop(columns=["LOCUS"]).groupby("DATE").sum().round(2).reset_index()
-    df.index = pd.to_datetime(df["DATE"], format="%Y-%m-%d")
-    df_total.index = pd.to_datetime(df_total['DATE'], format="%Y-%m-%d")
+
+    # Set DATE as index for both dataframes
+    df.set_index('DATE', inplace=True)
+    df_total.set_index('DATE', inplace=True)
 
     # top-level filters
     col1, col2, col3 = st.columns(3)
@@ -210,8 +212,10 @@ with tab2:
 with tab3:
     df = pd.read_csv("data/daily_wl.csv")
     df_total = df.drop(columns=["LOCUS"]).groupby("DATE").sum().round(2).reset_index()
-    df.index = pd.to_datetime(df["DATE"])
-    df_total.index = pd.to_datetime(df_total['DATE'])
+
+    # Set DATE as index for both dataframes
+    df.set_index('DATE', inplace=True)
+    df_total.set_index('DATE', inplace=True)
 
     # top-level filters
     col1, col2, col3 = st.columns(3)
