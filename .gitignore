@@ -1,0 +1,61 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Project-specific ignores
+app_local.py
+arima_final.py
+data.ipynb
+lstm_total_count.ipynb
+lstm_total_forecast_combined_wl.ipynb
+lstm_total_forecast_combined_wo.ipynb
+PDS_final_presentation_with_links.pptx
+SCM_Forecasting.pdf
+Tahoe_Salt_example.csv
+try.csv
+winters_example.ipynb
+winters.py
+requirements.txt
+pds/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pytest
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# mypy
+.mypy_cache/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Logs
+*.log
