@@ -229,13 +229,16 @@ with tab3:
     if timeframe == "Weekly WL":
         # first day of the week
         df = df.groupby("LOCUS").resample("W").sum().round(2)
+        df["DATE"] = df.index.get_level_values(1)
         df_total = df_total.resample("W").sum().round(2)
     elif timeframe == "Monthly WL":
         # first day of the month
         df = df.groupby("LOCUS").resample("MS").sum().round(2)
+        df["DATE"] = df.index.get_level_values(1)
         df_total = df_total.resample("MS").sum().round(2)
     elif timeframe == "Yearly WL":
         df = df.groupby("LOCUS").resample("YS").sum().round(2)
+        df["DATE"] = df.index.get_level_values(1)
         df_total = df_total.resample("YS").sum().round(2)
     
     wl1 = st.empty()
