@@ -4,7 +4,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Project Data Science Dashboard",
-    page_icon="📊",
+    page_icon="becris.png",
     layout="wide",
 )
 
@@ -12,7 +12,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["Sales Stock", "WO", "WL", "Forecast"])
 
 with tab1:
     # read csv
-    df = pd.read_csv("daily_total.csv")
+    df = pd.read_csv("data/daily_total.csv")
     df.index = pd.to_datetime(df["DATE"], format="%Y-%m-%d")
     df["HOURS SPENT"] = df["SECONDSSPENT"] / 3600
     df["USER COUNT"] = df["USERCOUNT"]
@@ -135,7 +135,7 @@ with tab1:
             st.dataframe(df)
 
 with tab2:
-    df = pd.read_csv("daily_wo.csv")
+    df = pd.read_csv("data/daily_wo.csv")
     df_total = df.drop(columns=["LOCUS"]).groupby("DATE").sum().round(2).reset_index()
     df.index = pd.to_datetime(df["DATE"], format="%Y-%m-%d")
     df_total.index = pd.to_datetime(df_total['DATE'], format="%Y-%m-%d")
@@ -156,14 +156,14 @@ with tab2:
     if timeframe == "Weekly WO":
         # first day of the week
         df = df.groupby("LOCUS").resample("W").sum().round(2).reset_index()
-        df_total = df_total.resample("W").sum().reset_index()
+        df_total = df_total.resample("W").sum().round(2).reset_index()
     elif timeframe == "Monthly WO":
         # first day of the month
         df = df.groupby("LOCUS").resample("MS").sum().round(2).reset_index()
-        df_total = df_total.resample("MS").sum().reset_index()
+        df_total = df_total.resample("MS").sum().round(2).reset_index()
     elif timeframe == "Yearly WO":
         df = df.groupby("LOCUS").resample("YS").sum().round(2).reset_index()
-        df_total = df_total.resample("YS").sum().reset_index()
+        df_total = df_total.resample("YS").sum().round(2).reset_index()
     
     wo1 = st.empty()
 
@@ -177,7 +177,7 @@ with tab2:
             fig.update_layout(transition_duration=500)
             st.plotly_chart(fig, use_container_width=True)
         else:
-            fig = px.scatter(df_total, x="DATE", y="WOANBL", template="plotly_dark")
+            fig = px.scatter(df_total, x=df_total.index, y="WOANBL", template="plotly_dark")
             fig.update_xaxes(rangeslider_visible=True)
             fig.update_layout(transition_duration=500)
             st.plotly_chart(fig, use_container_width=True)
@@ -208,7 +208,7 @@ with tab2:
                 st.dataframe(df_total.set_index('DATE'))
 
 with tab3:
-    df = pd.read_csv("daily_wl.csv")
+    df = pd.read_csv("data/daily_wl.csv")
     df_total = df.drop(columns=["LOCUS"]).groupby("DATE").sum().round(2).reset_index()
     df.index = pd.to_datetime(df["DATE"])
     df_total.index = pd.to_datetime(df_total['DATE'])
@@ -230,14 +230,14 @@ with tab3:
     if timeframe == "Weekly WL":
         # first day of the week
         df = df.groupby("LOCUS").resample("W").sum().round(2).reset_index()
-        df_total = df_total.resample("W").sum().reset_index()
+        df_total = df_total.resample("W").sum().round(2).reset_index()
     elif timeframe == "Monthly WL":
         # first day of the month
         df = df.groupby("LOCUS").resample("MS").sum().round(2).reset_index()
-        df_total = df_total.resample("MS").sum().reset_index()
+        df_total = df_total.resample("MS").sum().round(2).reset_index()
     elif timeframe == "Yearly WL":
         df = df.groupby("LOCUS").resample("YS").sum().round(2).reset_index()
-        df_total = df_total.resample("YS").sum().reset_index()
+        df_total = df_total.resample("YS").sum().round(2).reset_index()
     
     wl1 = st.empty()
 
@@ -251,7 +251,7 @@ with tab3:
             fig.update_layout(transition_duration=500)
             st.plotly_chart(fig, use_container_width=True)
         else:
-            fig = px.scatter(df_total, x="DATE", y=var, template="plotly_dark")
+            fig = px.scatter(df_total, x=df_total.index, y=var, template="plotly_dark")
             fig.update_xaxes(rangeslider_visible=True)
             fig.update_layout(transition_duration=500)
             st.plotly_chart(fig, use_container_width=True)
@@ -300,7 +300,7 @@ with tab4:
                 st.image("arima_forecast.png", caption="Mean Absolute Error: 32.6 Hours")
 
             with col2:
-                df = pd.read_csv("arima_forecast.csv")[['DATE', 'SECONDSSPENT', 'FORECAST']].set_index('DATE')
+                df = pd.read_csv("data/arima_forecast.csv")[['DATE', 'SECONDSSPENT', 'FORECAST']].set_index('DATE')
                 df[['SECONDSSPENT', 'FORECAST']] = df[['SECONDSSPENT', 'FORECAST']] / 3600
                 st.markdown("### Last 14 days (7 days forecasted)")
                 st.dataframe(df.tail(14))
@@ -310,7 +310,7 @@ with tab4:
                 st.image("hw_forecast.png", caption="Mean Absolute Error: 110.2 Hours")
 
             with col2:
-                df = pd.read_csv("hw_forecast.csv")[['DATE', 'SECONDSSPENT', 'FORECAST']].set_index('DATE')
+                df = pd.read_csv("data/hw_forecast.csv")[['DATE', 'SECONDSSPENT', 'FORECAST']].set_index('DATE')
                 df[['SECONDSSPENT', 'FORECAST']] = df[['SECONDSSPENT', 'FORECAST']] / 3600
                 st.markdown("### Last 14 days (7 days forecasted)")
                 st.dataframe(df.tail(14))
