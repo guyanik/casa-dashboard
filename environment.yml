@@ -8,12 +8,7 @@ channels:
   - defaults
 dependencies:
   - numpy=1.21.5=py39h2e5f0a9_3
-  - numpy-base=1.21.5=py39h3b1a694_3
   - pandas=1.4.4=py39he9d5cce_0
-  - pandas-stubs=1.2.0.62=py39h6e9494a_0
   - plotly=5.9.0=py39hecd8cb5_0
-  - python=3.9.13=hdfd78df_1
-  - pip:
-      - streamlit==1.29.0
 variables:
   PYTORCH_ENABLE_MPS_FALLBACK: '1'
