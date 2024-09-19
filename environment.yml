@@ -9,6 +9,6 @@ channels:
 dependencies:
   - numpy=1.21.5=py39h2e5f0a9_3
   - pandas=1.4.4=py39he9d5cce_0
-  - plotly=5.9.0=py39hecd8cb5_0
+  - plotly
 variables:
   PYTORCH_ENABLE_MPS_FALLBACK: '1'
