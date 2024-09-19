@@ -13,18 +13,6 @@ dependencies:
   - pandas-stubs=1.2.0.62=py39h6e9494a_0
   - plotly=5.9.0=py39hecd8cb5_0
   - python=3.9.13=hdfd78df_1
-  - python-dateutil=2.8.2=pyhd3eb1b0_0
-  - python-dotenv=1.0.1=pyhd8ed1ab_0
-  - python-fastjsonschema=2.16.2=py39hecd8cb5_0
-  - python-libarchive-c=2.9=pyhd3eb1b0_1
-  - python-lsp-black=1.2.1=py39hecd8cb5_0
-  - python-lsp-jsonrpc=1.0.0=pyhd3eb1b0_0
-  - python-lsp-server=1.5.0=py39hecd8cb5_0
-  - python-slugify=5.0.2=pyhd3eb1b0_0
-  - python-snappy=0.6.0=py39h23ab428_3
-  - python-xxhash=3.4.1=py39hdc70f33_0
-  - python.app=3=py39hca72f7f_0
-  - python_abi=3.9=2_cp39
   - pip:
       - streamlit==1.29.0
 variables:
