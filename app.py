@@ -4,11 +4,11 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Project Data Science Dashboard",
-    page_icon="becris.png",
+    page_icon="images/becris.png",
     layout="wide",
 )
 
-tab1, tab2, tab3, tab4 = st.tabs(["Sales Stock", "WO", "WL", "Forecast"])
+tab1, tab2, tab3, tab4 = st.tabs(["Sales Stock", "WO", "WL", "Forecast & Prediction"])
 
 with tab1:
     # read csv
@@ -285,19 +285,18 @@ with tab3:
 with tab4:
     col1, col2, col3 = st.columns(3)
 
-    with col2:
-        st.title("Forecast")
-        model = st.selectbox("Select the model", ["ARIMA", "Holt-Winters"])
+    with col1:
+        st.markdown("### Forecast")
+        model1 = st.selectbox("Select the model", ["ARIMA", "Holt-Winters"])
 
-    fc1 = st.empty()
-
-    with fc1.container():
+    fc = st.empty()
+    with fc.container():
         col1, col2 = st.columns([2.5, 1])
 
-        if model == "ARIMA":
+        if model1 == "ARIMA":
             with col1:
                 # display image
-                st.image("arima_forecast.png", caption="Mean Absolute Error: 32.6 Hours")
+                st.image("images/arima_forecast.png", caption="Mean Absolute Error: 32.6 Hours")
 
             with col2:
                 df = pd.read_csv("data/arima_forecast.csv")[['DATE', 'SECONDSSPENT', 'FORECAST']].set_index('DATE')
@@ -307,10 +306,41 @@ with tab4:
         else:
             with col1:
                 # display image
-                st.image("hw_forecast.png", caption="Mean Absolute Error: 110.2 Hours")
+                st.image("images/hw_forecast.png", caption="Mean Absolute Error: 110.2 Hours")
 
             with col2:
                 df = pd.read_csv("data/hw_forecast.csv")[['DATE', 'SECONDSSPENT', 'FORECAST']].set_index('DATE')
                 df[['SECONDSSPENT', 'FORECAST']] = df[['SECONDSSPENT', 'FORECAST']] / 3600
                 st.markdown("### Last 14 days (7 days forecasted)")
                 st.dataframe(df.tail(14))
+
+    with col1:
+        st.markdown("### Prediction")
+        model2 = st.selectbox("Select the model", ["LSTM", "LSTM_total"])
+    
+    # new row for prediction similar to the forecast
+    fc2 = st.empty()
+    with fc2.container():
+        col1, col2 = st.columns([2.5, 1])
+
+        if model2 == "LSTM":
+            with col1:
+                # display image
+                st.image("images/lstm.png", caption="Mean Absolute Error: 14.8 Hours")
+
+            with col2:
+                df = pd.read_csv("data/lstm_prediction.csv")[['DATE', 'DP2', 'DP1', 'HP1', 'HP2', 'DD', 'HD', 
+                                                              'DP2_pred', 'DP1_pred', 'HP1_pred', 'HP2_pred', 'DD_pred', 'HD_pred']].set_index('DATE')
+                st.markdown("### Last 41 days predicted")
+                st.dataframe(df)
+        else:
+            with col1:
+                # display image
+                st.image("images/lstm_total.png", caption="Mean Absolute Error: 33.1 Hours")
+
+            with col2:
+                df = pd.read_csv("data/lstm_total_prediction.csv")[['DATE', 'QUANTITY', 'VOLUME', 'WEIGHT', 'PRICE', 'SECONDSSPENT', 'PREDICTION']].set_index('DATE')
+                df[['SECONDSSPENT', 'PREDICTION']] = df[['SECONDSSPENT', 'PREDICTION']] / 3600
+                st.markdown("### Last 41 days predicted")
+                st.dataframe(df.tail(41))
+
