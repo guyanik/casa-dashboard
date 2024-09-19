@@ -1,6 +1,6 @@
 # Casa International Workforce Prediction Dashboard
 
-![Casa International Logo](images/logo.png)
+![Casa International Logo](images/logo.jpg)
 
 ## Project Overview
 
