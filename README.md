@@ -1,5 +1,6 @@
 # Casa International Workforce Prediction Dashboard
 
+[Try dasboard at maxflow.streamlit.app](https://maxflow.streamlit.app/)
 ![Casa International Logo](images/logo.jpg)
 
 ## Project Overview
@@ -78,11 +79,6 @@ Navigate through these tabs to explore different aspects of the data and predict
 
 - Favicon provided by [Becris](https://www.becrisdesign.com/)
 - This project was completed as part of the UHasselt Master of Statistics and Data Science program Project: Data Science course.
-
-## Links
-
-- [GitHub Repository](https://github.com/guyanik/casa-dashboard)
-- [Dashboard Site](https://maxflow.streamlit.app/)
 
 ## License
 
