@@ -33,7 +33,7 @@ winters.py
 pds/
 
 # Jupyter Notebook
-*.ipynb
+.ipynb
 .ipynb_checkpoints
 
 # pytest
