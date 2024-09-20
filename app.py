@@ -159,7 +159,8 @@ with tab2:
         df_total = df_total.resample("W").sum().round(2).reset_index()
     elif timeframe == "Monthly WO":
         # first day of the month
-        df = df.groupby("LOCUS").resample("MS").sum().round(2).reset_index()
+        df = df.groupby("LOCUS").resample("MS").sum().round(2)
+        print(df)
         df_total = df_total.resample("MS").sum().round(2).reset_index()
     elif timeframe == "Yearly WO":
         df = df.groupby("LOCUS").resample("YS").sum().round(2).reset_index()
