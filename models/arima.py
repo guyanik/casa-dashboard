@@ -9,12 +9,13 @@ import pandas as pd
 import pmdarima as pm
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+import os
 
 
 # In[71]:
 
 
-df = pd.read_csv('daily_total.csv')
+df = pd.read_csv(os.path.dirname(__file__) + "/../daily_total.csv")
 df['DATE'] = pd.to_datetime(df['DATE'])
 df = df[df['DATE'] > '2022-08-10']
 # fill missing dates with 0
@@ -74,7 +75,7 @@ df_forecast.tail(14)
 
 
 # df_forecast['DATE'] = df_forecast.index
-# df_forecast.to_csv('arima_forecast.csv', index=False)
+# df_forecast.to_csv(os.path.dirname(__file__) + "/../arima_forecast.csv", index=False)
 
 
 # In[82]:

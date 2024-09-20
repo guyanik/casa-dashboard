@@ -21,6 +21,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+import os
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -29,7 +30,7 @@ warnings.filterwarnings('ignore')
 # In[77]:
 
 
-df = pd.read_csv('data/daily.csv')
+df = pd.read_csv(os.path.dirname(__file__) + "/../data/daily.csv")
 df['DATE'] = pd.to_datetime(df['DATE'])
 df.dtypes
 
@@ -282,7 +283,7 @@ df_pred = df.pivot(index="DATE", columns='TEAMNAME', values='HOURSSPENT')[-len(d
 # df_pred.columns = ["DATE"] + list(codes.keys())
 for i in range(num_teams):
     df_pred[list(codes.keys())[i] + "_pred"] = inv_yhat[i::num_teams] / 3600
-df_pred.to_csv('data/lstm_prediction.csv', index=False)
+df_pred.to_csv(os.path.dirname(__file__) + "/../data/lstm_prediction.csv", index=False)
 
 
 # In[ ]:
