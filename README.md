@@ -1,7 +1,7 @@
 # Casa International Workforce Prediction Dashboard
 
-[Try dasboard at maxflow.streamlit.app](https://maxflow.streamlit.app/)
 ![Casa International Logo](images/logo.jpg)
+[Try dasboard at maxflow.streamlit.app](https://maxflow.streamlit.app/)
 
 ## Project Overview
 
