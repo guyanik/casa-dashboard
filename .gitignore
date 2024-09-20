@@ -30,6 +30,7 @@ Tahoe_Salt_example.csv
 try.csv
 winters_example.ipynb
 pds/
+data/
 
 # Jupyter Notebook
 *.ipynb
